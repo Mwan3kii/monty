@@ -1,14 +1,14 @@
 #include "monty.h"
 /**
  * opens_file - opens a file
- * @file: the name of the file
+ * @file_n: the name of the file
  */
-void opens_file(char *file)
+void opens_file(char *file_n)
 {
-	FILE *fd = fopen(file, "r");
+	FILE *fd = fopen(file_n, "r");
 
-	if (file == NULL || fd == NULL)
-		errors(2, file);
+	if (file_n == NULL || fd == NULL)
+		errors(2, file_n);
 	reads_file(fd);
 	fclose(fd);
 }

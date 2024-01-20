@@ -31,7 +31,7 @@ void find_funct(char *opcode, char *str_num, int l_num, int frmt)
 	};
 	if (opcode[0] == '#')
 		return;
-	for (flag = 1, k = 0; func_list[1].opcode != NULL; k++)
+	for (flag = 1, k = 0; func_list[k].opcode != NULL; k++)
 	{
 		if (strcmp(opcode, func_list[k].opcode) == 0)
 		{
@@ -46,12 +46,12 @@ void find_funct(char *opcode, char *str_num, int l_num, int frmt)
  * call_funct - calls the func required
  * @funct: pointer to function to be called
  * @op: opcode
- * @str_num: string in numeral value
+ * @strnum: string in numeral value
  * @l_num: line_number
  * @frmt: format specifier
  * if 1 nodes will be entered
  */
-void call_funct(op_funct funct, char *op, char *str_num, int l_num, int frmt)
+void call_funct(op_funct funct, char *op, char *strnum, int l_num, int frmt)
 {
 	stack_t *nod;
 	int flag;
@@ -60,19 +60,19 @@ void call_funct(op_funct funct, char *op, char *str_num, int l_num, int frmt)
 	flag = 1;
 	if (strcmp(op, "push") == 0)
 	{
-		if (str_num != NULL && str_num[0] == '-')
+		if (strnum != NULL && strnum[0] == '-')
 		{
-			str_num = str_num + 1;
+			strnum = strnum + 1;
 			flag = -1;
 		}
-		if (str_num == NULL)
+		if (strnum == NULL)
 			errors(5, l_num);
-		for (j = 0; str_num[j] != '\0'; j++)
+		for (j = 0; strnum[j] != '\0'; j++)
 		{
-			if (isdigit(str_num[j]) == 0)
+			if (isdigit(strnum[j]) == 0)
 				errors(5, l_num);
 		}
-		nod = creates_nodes(atoi(str_num) * flag);
+		nod = creates_nodes(atoi(strnum) * flag);
 		if (frmt == 0)
 			funct(&nod, l_num);
 		if (frmt == 1)

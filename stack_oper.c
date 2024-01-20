@@ -27,27 +27,17 @@ void add_to_stack(stack_t **new_node, __attribute__((unused))unsigned int lnum)
  */
 void prints_stack(stack_t **stack, unsigned int line_number)
 {
-	const char *argument = " \n";
-	stack_t *new_node;
+	stack_t *temp;
 
-	if (!stack || !line_number)
-	{
-		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+	(void) line_number;
+	if (stack == NULL)
 		exit(EXIT_FAILURE);
-	}
-	new_node = malloc(sizeof(stack_t));
-
-	if (!new_node)
+	temp = *stack;
+	while (temp != NULL)
 	{
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
+		printf("%d\n", temp->n);
+		temp = temp->next;
 	}
-	new_node->n = atoi(argument);
-	new_node->prev = NULL;
-	new_node->prev = *stack;
-	if (*stack)
-		(*stack)->prev = new_node;
-	*stack = new_node;
 }
 /**
  * pops_top - removes top node from stack
@@ -71,15 +61,9 @@ void pops_top(stack_t **stack, unsigned int line_number)
  * @stack: the stack
  * @line_number: the line_number
  */
-void prints_top(stack_t **stack, unsigned int line_number __attribute__((unused)))
+void prints_top(stack_t **stack, unsigned int line_number)
 {
-	stack_t *curr = *stack;
-
-	if (!stack || !*stack)
-		return;
-	while (curr)
-	{
-		printf("%d\n", curr->n);
-		curr = curr->next;
-	}
+	if (stack == NULL || *stack == NULL)
+		stack_errors(6, line_number);
+	printf("%d\n", (*stack)->n);
 }

@@ -25,6 +25,7 @@ typedef struct stack_s
 	struct stack_s *prev;
 	struct stack_s *next;
 } stack_t;
+
 /**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
@@ -44,17 +45,17 @@ typedef void (*op_funct)(stack_t **, unsigned int);
 
 void errors(int handle_errors, ...);
 void stack_errors(int handle_errors, ...);
-void opens_file(char *file);
+void opens_file(char *file_n);
 void string_errors(int handle_errors, ...);
 void reads_file(FILE *fd);
 int parses_line(char *buff, int line_number, int frmt);
 void find_funct(char *opcode, char *str_num, int l_num, int frmt);
-void call_funct(op_funct, char *, char *, int, int);
+void call_funct(op_funct funct, char *op, char *strnum, int l_num, int frmt);
 void add_to_stack(stack_t **new_node, __attribute__((unused))unsigned int lnum);
 void prints_str(stack_t **stack, __attribute__((unused))unsigned int lnum);
 void pops_top(stack_t **stack, unsigned int line_number);
 void prints_stack(stack_t **stack, unsigned int line_number);
-void prints_top(stack_t **stack, unsigned int line_number);
+void prints_top(stack_t **stack, unsigned int line_number __attribute__((unused)));
 void mod_node(stack_t **stack, unsigned int line_number);
 void mul_node(stack_t **stack, unsigned int line_number);
 void rotl(stack_t **stack, __attribute__((unused))unsigned int lnum);

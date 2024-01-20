@@ -11,9 +11,9 @@ void prints_char(stack_t **stack, unsigned int line_number)
 	if (stack == NULL || *stack == NULL)
 		string_errors(11, line_number);
 	asci = (*stack)->n;
-	if (asci < 0 || asci > 123)
+	if (asci < 0 || asci > 127)
 		string_errors(10, line_number);
-	printf("%d\n", asci);
+	printf("%c\n", asci);
 }
 /**
  * prints_str - prints a string

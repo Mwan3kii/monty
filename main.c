@@ -1,4 +1,5 @@
 #include "monty.h"
+
 stack_t *h = NULL;
 
 /**
@@ -41,7 +42,6 @@ stack_t *creates_nodes(int n)
  */
 void free_nodes(void)
 {
-	stack_t *h = NULL;
 	stack_t *temp;
 
 	if (h == NULL)
