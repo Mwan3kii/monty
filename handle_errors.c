@@ -1,4 +1,5 @@
 #include "monty.h"
+#include <stdarg.h>
 /**
  * errors - func handles errors
  * @handle_errors: parameter
@@ -6,29 +7,32 @@
 void errors(int handle_errors, ...)
 {
 	va_list args;
-	char *opcode;
 	int lnum;
+	char *op;
+	char *file;
 
 	va_start(args, handle_errors);
+	lnum = va_arg(args, int);
 	switch (handle_errors)
 	{
 		case 1:
 			fprintf(stderr, "Usage: monty file\n");
 			break;
 		case 2:
-			fprintf(stderr, "Error: Can't open file %s\n",
-					va_arg(args, char *));
+			file = va_arg(args, char *);
+			fprintf(stderr, "Error: Can't open file %s\n", file);
+
 			break;
 		case 3:
-			lnum = va_arg(args, int);
-			opcode = va_arg(args, char *);
-			fprintf(stderr, "L%d: unknown instruction %s\n", lnum, opcode);
+			op = va_arg(args, char *);
+			fprintf(stderr, "L%d: unknown instruction %s\n", lnum, op);
+
 			break;
 		case 4:
 			fprintf(stderr, "Error: malloc failed\n");
 			break;
 		case 5:
-			fprintf(stderr, "L%d: usage: push integer\n", va_arg(args, int));
+			fprintf(stderr, "L%d: usage: push integer\n", lnum);
 			break;
 		default:
 			break;
@@ -44,32 +48,30 @@ void errors(int handle_errors, ...)
 void stack_errors(int handle_errors, ...)
 {
 	va_list args;
-	char *opcode;
 	int lnum;
+	char *op;
 
 	va_start(args, handle_errors);
+	lnum = va_arg(args, int);
 	switch (handle_errors)
 	{
 		case 6:
-			fprintf(stderr, "L%d: can't pint, stack empty\n",
-					va_arg(args, int));
+			fprintf(stderr, "L%d: can't pint, stack empty\n", lnum);
 			break;
 		case 7:
-			fprintf(stderr, "L%d: can't pop an empty stack\n",
-					va_arg(args, int));
+			fprintf(stderr, "L%d: can't pop an empty stack\n", lnum);
 			break;
 		case 8:
-			lnum = va_arg(args, unsigned int);
-			opcode = va_arg(args, char *);
-			fprintf(stderr, "L%d: cant %s, stack too short\n", lnum, opcode);
+			op = va_arg(args, char *);
+			fprintf(stderr, "L%d: cant %s, stack too short\n", lnum, op);
 			break;
 		case 9:
-			fprintf(stderr, "L%d: division by zero\n",
-					va_arg(args, unsigned int));
+			fprintf(stderr, "L%d: division by zero\n", lnum);
 			break;
 		default:
 			break;
 	}
+	va_end(args);
 	free_nodes();
 	exit(EXIT_FAILURE);
 }
