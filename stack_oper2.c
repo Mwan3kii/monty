@@ -46,7 +46,10 @@ void add_node(stack_t **stack, unsigned int line_number)
 	int result;
 
 	if (stack == NULL || *stack == NULL || (*stack)->prev == NULL)
-		stack_errors(8, line_number, "add");
+	{
+		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
 	(*stack) = (*stack)->next;
 	result = (*stack)->n + (*stack)->prev->n;
 	(*stack)->n = result;

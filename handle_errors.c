@@ -49,7 +49,6 @@ void stack_errors(int handle_errors, ...)
 {
 	va_list args;
 	int lnum;
-	char *op;
 
 	va_start(args, handle_errors);
 	lnum = va_arg(args, int);
@@ -60,10 +59,6 @@ void stack_errors(int handle_errors, ...)
 			break;
 		case 7:
 			fprintf(stderr, "L%d: can't pop an empty stack\n", lnum);
-			break;
-		case 8:
-			op = va_arg(args, char *);
-			fprintf(stderr, "L%d: cant %s, stack too short\n", lnum, op);
 			break;
 		case 9:
 			fprintf(stderr, "L%d: division by zero\n", lnum);
