@@ -45,7 +45,7 @@ void add_node(stack_t **stack, unsigned int line_number)
 {
 	int result;
 
-	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
+	if (stack == NULL || *stack == NULL || (*stack)->prev == NULL)
 		stack_errors(8, line_number, "add");
 	(*stack) = (*stack)->next;
 	result = (*stack)->n + (*stack)->prev->n;
@@ -80,6 +80,7 @@ void swap_node(stack_t **stack, unsigned int line_number)
  */
 void nop(stack_t **stack, unsigned int line_number)
 {
+	/* Do nothing */
 	(void)stack;
 	(void)line_number;
 }
