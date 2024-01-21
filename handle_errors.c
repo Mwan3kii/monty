@@ -21,7 +21,7 @@ void errors(int handle_errors, ...)
 			break;
 		case 3:
 			op = va_arg(args, char *);
-			lnum = va_arg(args, int);
+			lnum = va_arg(args, unsigned int);
 			fprintf(stderr, "L%d: unknown instruction %s\n", lnum, op);
 
 			break;
@@ -29,9 +29,10 @@ void errors(int handle_errors, ...)
 			fprintf(stderr, "Error: malloc failed\n");
 			break;
 		case 5:
-			fprintf(stderr, "L%d: usage: push integer\n", va_arg(args, int));
+			fprintf(stderr, "L%d: usage: push integer\n", va_arg(args,unsigned int));
 			break;
 		default:
+			fprintf(stderr, "Error: Unknown error\n");
 			break;
 	}
 	free_nodes();
@@ -66,6 +67,7 @@ void stack_errors(int handle_errors, ...)
 			fprintf(stderr, "L%d: division by zero\n", va_arg(args, unsigned int));
 			break;
 		default:
+			fprintf(stderr, "Error: Unknown error\n");
 			break;
 	}
 	free_nodes();
@@ -91,6 +93,7 @@ void string_errors(int handle_errors, ...)
 			fprintf(stderr, "L%d: can't pchar, stack empty\n", lnum);
 			break;
 		default:
+			fprintf(stderr, "Error: Unknown error\n");
 			break;
 	}
 	free_nodes();

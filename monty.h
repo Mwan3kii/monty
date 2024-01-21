@@ -51,11 +51,12 @@ void reads_file(FILE *fd);
 int parses_line(char *buff, int line_number, int frmt);
 void find_funct(char *opcode, char *str_num, int l_num, int frmt);
 void call_funct(op_funct funct, char *op, char *strnum, int l_num, int frmt);
-void add_to_stack(stack_t **new_node, __attribute__((unused))unsigned int lnum);
-void prints_str(stack_t **stack, __attribute__((unused))unsigned int lnum);
-void pops_top(stack_t **stack, unsigned int line_number);
 void prints_stack(stack_t **stack, unsigned int line_number);
-void prints_top(stack_t **stack, unsigned int line_number __attribute__((unused)));
+void add_to_stack(stack_t **new_node, __attribute__((unused))unsigned int lnum);
+void prints_top(stack_t **stack, unsigned int line_number);
+void pops_top(stack_t **stack, unsigned int line_number);
+void add_to_stack(stack_t **stack, unsigned int line_number);
+void prints_stack(stack_t **stack, unsigned int line_number);
 void mod_node(stack_t **stack, unsigned int line_number);
 void mul_node(stack_t **stack, unsigned int line_number);
 void rotl(stack_t **stack, __attribute__((unused))unsigned int lnum);
@@ -71,5 +72,8 @@ void add_to_queue(stack_t **new_node, __attribute__((unused))unsigned int lnum);
 void swap_node(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
 int len_chars(FILE *);
+void pall(stack_t **stack, unsigned int line_number);
+void push(stack_t **stack, unsigned int line_number, char *value);
+void push_node(stack_t **stack, unsigned int line_number, int value);
 
 #endif

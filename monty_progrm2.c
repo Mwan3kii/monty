@@ -76,7 +76,7 @@ void call_funct(op_funct funct, char *op, char *strnum, int l_num, int frmt)
 		if (frmt == 0)
 			funct(&nod, l_num);
 		if (frmt == 1)
-			add_to_queue(&nod, l_num);
+			add_to_stack(&nod, l_num);
 	}
 	else
 		funct(&h, l_num);

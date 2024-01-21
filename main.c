@@ -31,10 +31,10 @@ stack_t *creates_nodes(int n)
 
 	node = malloc(sizeof(stack_t));
 	if (node == NULL)
-		errors(4);
-	node->next = NULL;
-	node->prev = NULL;
+		exit(EXIT_FAILURE);
 	node->n = n;
+	node->prev = NULL;
+
 	return (node);
 }
 /**
